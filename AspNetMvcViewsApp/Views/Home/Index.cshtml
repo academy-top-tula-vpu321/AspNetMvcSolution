@@ -1,0 +1,77 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+    string time = DateTime.Now.ToShortTimeString();
+    var hours = DateTime.Now.Hour;
+    var month = DateTime.Now.Month;
+}
+
+@* comments *@
+
+<div class="text-center">
+    <h1 class="display-2">Welcome</h1>
+    <p>@DateTime.Now.ToShortDateString()</p>
+    <p>@time</p>
+
+    @if(hours >= 5 && hours < 12)
+    {
+        <h3>Good morning</h3>
+    }
+    else if (hours >= 12 && hours < 18)
+    {
+        <h3>Good day</h3>
+    }
+    else if (hours >= 18 && hours < 23)
+    {
+        <h3>Good evening</h3>
+    }
+    else
+    {
+        <h3>Good night</h3>
+    }
+
+    @switch(month)
+    {
+        case 12:
+        case 1:
+        case 2:
+            <h3>Now winter</h3>
+            break;
+        case 3:
+        case 4:
+        case 5:
+            <h3>Now spring</h3>
+            break;
+        case 6:
+        case 7:
+        case 8:
+            <h3>Now summer</h3>
+            break;
+        case 9:
+        case 10:
+        case 11:
+            <h3>Now autumn</h3>
+            break;
+    }
+
+    @functions
+    {
+        public int Square(int number)
+        {
+            return number * number;
+        }
+    }
+
+    @for(int i = 0; i < 5; i++)
+    {
+        <h3>@i: @Square(i)</h3>
+    }
+
+    @{
+        List<string> cities = new() { "Moscow", "Voroneg", "Tula" };
+    }
+
+    @foreach(var city in cities)
+    {
+        <h3>@city</h3>
+    }
+</div>

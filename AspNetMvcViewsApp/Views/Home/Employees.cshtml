@@ -1,0 +1,21 @@
+﻿@model List<Employee> //EmployeeViewModel
+@inject ITimeService timeService
+
+@{
+    //Layout = "../Shared/_MyLayout.cshtml";
+}
+
+<h1>@timeService.GetTime</h1>
+
+@await Html.PartialAsync("../Shared/EmployeeList.cshtml", Model)
+
+@*
+@section Footer
+{
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2025 - Employees - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+}
+*@

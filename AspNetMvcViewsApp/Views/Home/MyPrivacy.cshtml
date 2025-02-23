@@ -1,0 +1,17 @@
+﻿@{
+    var name = ViewData["Name"];
+    ViewData["Title"] = "Welcome";
+
+    var cities = (List<string>)ViewData["Cities"];
+}
+
+<h1>@ViewData["Title"]</h1>
+<h2>@ViewBag.Message</h2>
+
+<h2>Hello @name @ViewData["Age"]</h2>
+
+@* @foreach(var city in cities) *@
+@foreach (var city in ViewBag.Cities)
+{
+    <h3>@city</h3>
+}
