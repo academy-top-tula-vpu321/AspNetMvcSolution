@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetMvcViewsApp", "AspNet
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetMvcAdvansedApp", "AspNetMvcAdvansedApp\AspNetMvcAdvansedApp.csproj", "{75051902-C181-4F4C-A39F-672EE2A87066}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetMvcHelpersApp", "AspNetMvcHelpersApp\AspNetMvcHelpersApp.csproj", "{5151FAF3-C8DE-4E5E-8296-9732A9E48294}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{75051902-C181-4F4C-A39F-672EE2A87066}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{75051902-C181-4F4C-A39F-672EE2A87066}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{75051902-C181-4F4C-A39F-672EE2A87066}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5151FAF3-C8DE-4E5E-8296-9732A9E48294}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5151FAF3-C8DE-4E5E-8296-9732A9E48294}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5151FAF3-C8DE-4E5E-8296-9732A9E48294}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5151FAF3-C8DE-4E5E-8296-9732A9E48294}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

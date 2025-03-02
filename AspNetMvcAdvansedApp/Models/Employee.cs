@@ -13,6 +13,13 @@
         public Company? Company { get; set; }
     }
 
+    public class EmployeeViewModel
+    {
+        public string Name { get; set; } = null!;
+        public int Age { get; set; }
+        public int CompanyId { get; set; }
+    }
+
     public class EmployeesViewModel
     {
         public List<Employee> Employees { get; set; } = new();

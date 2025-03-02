@@ -1,0 +1,12 @@
+﻿@using AspNetMvcHelpersApp.Helpers
+
+@{
+    string[] countries = ((List<string>)ViewData["countries"]).ToArray();
+    string[] cities = ((List<string>)ViewData["cities"]).ToArray();
+}
+
+<div class="text-left">
+    <h1 class="display-4">Welcome</h1>
+    @Html.CreateUList(countries)
+    @Html.CreateOList(cities)
+</div>
