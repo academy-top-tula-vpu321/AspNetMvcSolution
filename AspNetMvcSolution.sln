@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetMvcControllersApp", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetMvcViewsApp", "AspNetMvcViewsApp\AspNetMvcViewsApp.csproj", "{B00915D0-8FF5-4163-B4BC-8CCCC6F7C3A7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetMvcAdvansedApp", "AspNetMvcAdvansedApp\AspNetMvcAdvansedApp.csproj", "{75051902-C181-4F4C-A39F-672EE2A87066}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{B00915D0-8FF5-4163-B4BC-8CCCC6F7C3A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B00915D0-8FF5-4163-B4BC-8CCCC6F7C3A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B00915D0-8FF5-4163-B4BC-8CCCC6F7C3A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{75051902-C181-4F4C-A39F-672EE2A87066}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75051902-C181-4F4C-A39F-672EE2A87066}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75051902-C181-4F4C-A39F-672EE2A87066}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75051902-C181-4F4C-A39F-672EE2A87066}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,39 @@
+﻿@using AspNetMvcAdvansedApp.Models
+@model EmployeesViewModel
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <form>
+        <label>Select company:</label>
+        <select name="companyId">
+            @foreach(var c in Model.Companies)
+            {
+                <option value="@c.Id">@c.Title</option>
+            }
+        </select>
+        <button type="submit">Select</button>
+    </form>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Company</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var e in Model.Employees)
+            {
+                <tr>
+                    <td>@e.Name</td>
+                    <td>@e.Age</td>
+                    <td>@e.Company?.Title</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
