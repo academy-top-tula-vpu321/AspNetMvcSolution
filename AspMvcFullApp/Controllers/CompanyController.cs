@@ -57,14 +57,21 @@ namespace AspMvcFullApp.Controllers
         [HttpPost]
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id is not null)
+            try
             {
-                Company company = new() { Id = id.Value };
-                context.Entry(company).State = EntityState.Deleted;
-                await context.SaveChangesAsync();
+                if (id is not null)
+                {
+                    Company company = new() { Id = id.Value };
+                    context.Entry(company).State = EntityState.Deleted;
+                    await context.SaveChangesAsync();
+                    return RedirectToAction("Index");
+                }
+                return NotFound();
+            }
+            catch (Exception ex)
+            {
                 return RedirectToAction("Index");
             }
-            return NotFound();
         }
     }
 }

@@ -1,5 +1,6 @@
 using AspMvcFullApp.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 
@@ -15,14 +16,33 @@ namespace AspMvcFullApp.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(SortState sortState = SortState.NameAsc)
         {
-            return View(await context.Employees.ToListAsync());
+            IQueryable<Employee> employees = context.Employees
+                                   .Include(e => e.Company);
+
+            ViewData["NameSort"] = (sortState == SortState.NameAsc) ? SortState.NameDesc : SortState.NameAsc;
+            ViewData["AgeSort"] = (sortState == SortState.AgeAsc) ? SortState.AgeDesc : SortState.AgeAsc;
+            ViewData["CompanySort"] = (sortState == SortState.CompanyAsc) ? SortState.CompanyDesc : SortState.CompanyAsc;
+
+            employees = sortState switch
+            {
+                SortState.NameDesc => employees.OrderByDescending(e => e.Name),
+                SortState.AgeAsc => employees.OrderBy(e => e.Age),
+                SortState.AgeDesc => employees.OrderByDescending(e => e.Age),
+                SortState.CompanyAsc => employees.OrderBy(e => e.Company!.Title),
+                SortState.CompanyDesc => employees.OrderByDescending(e => e.Company!.Title),
+                _ => employees.OrderBy(e => e.Name)
+            };
+
+            return View(await employees.ToListAsync());
+
         }
 
         [HttpGet]
         public IActionResult Create()
         {
+            ViewData["Companies"] = context.Companies;
             return View();
         }
 
@@ -40,6 +60,7 @@ namespace AspMvcFullApp.Controllers
         {
             if(id is not null)
             {
+                ViewData["Companies"] = context.Companies;
                 Employee? employee = await context.Employees.FindAsync(id);
                 if(employee is not null)
                     return View(employee);

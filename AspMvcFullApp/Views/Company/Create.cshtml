@@ -1,5 +1,14 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model AspMvcFullApp.Models.Company
+
+<h2>Add new Company</h2>
+<form asp-controller="company" asp-action="create">
+    <div>
+        <label asp-for="Title">Title</label>
+        <input asp-for="Title" type="text" />
+    </div>
+
+    <div>
+        <button type="submit">Create Company</button>
+    </div>
+</form>
+

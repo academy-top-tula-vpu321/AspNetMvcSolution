@@ -9,8 +9,21 @@
     <table>
         <thead>
             <tr>
-                <th>Name</th>
-                <th>Age</th>
+                <th>
+                    <a asp-action="index" asp-route-sortState="@ViewData["NameSort"]">
+                        Name
+                    </a>
+                </th>
+                <th>
+                    <a asp-action="index" asp-route-sortState="@ViewData["AgeSort"]">
+                        Age
+                    </a>
+                </th>
+                <th>
+                    <a asp-action="index" asp-route-sortState="@ViewData["CompanySort"]">
+                        Company
+                    </a>
+                </th>
                 <th></th>
                 <th></th>
             </tr>
@@ -21,6 +34,7 @@
                 <tr>
                     <td>@employee.Name</td>
                     <td>@employee.Age</td>
+                    <td>@employee.Company?.Title</td>
                     <td>
                         <a asp-controller="home" 
                            asp-action="edit"
