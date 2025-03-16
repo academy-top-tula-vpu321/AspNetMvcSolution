@@ -1,8 +1,21 @@
-﻿@model IEnumerable<AspMvcFullApp.Models.Employee>
+﻿@* @model IEnumerable<AspMvcFullApp.Models.Employee> *@
+@model AspMvcFullApp.Models.EmployeesListViewModel
 
 <div>
     <div>
         <a asp-action="create" class="btn btn-primary">Add new employee</a>
+    </div>
+
+    <div>
+        <form method="get">
+            <label asp-for="Name">Name</label>
+            <input asp-for="Name" />
+
+            <label asp-for="Companies">Name</label>
+            <select name="companyId" asp-items="Model.Companies"></select>
+
+            <button type="submit">Search</button>
+        </form>
     </div>
 
     <h2>List of Employees:</h2>
@@ -29,7 +42,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach(var employee in Model)
+            @foreach(var employee in Model.Employees)
             {
                 <tr>
                     <td>@employee.Name</td>

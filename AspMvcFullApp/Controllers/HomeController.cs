@@ -1,5 +1,6 @@
 using AspMvcFullApp.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
@@ -16,10 +17,18 @@ namespace AspMvcFullApp.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Index(SortState sortState = SortState.NameAsc)
+        public async Task<IActionResult> Index(int? companyId, string? name, 
+                                                SortState sortState = SortState.NameAsc)
         {
             IQueryable<Employee> employees = context.Employees
                                    .Include(e => e.Company);
+
+            if (companyId is not null && companyId != 0)
+                employees = employees.Where(e => e.CompanyId == companyId);
+
+            if(!String.IsNullOrEmpty(name))
+                employees = employees.Where(e => e.Name!.Contains(name));
+
 
             ViewData["NameSort"] = (sortState == SortState.NameAsc) ? SortState.NameDesc : SortState.NameAsc;
             ViewData["AgeSort"] = (sortState == SortState.AgeAsc) ? SortState.AgeDesc : SortState.AgeAsc;
@@ -35,7 +44,17 @@ namespace AspMvcFullApp.Controllers
                 _ => employees.OrderBy(e => e.Name)
             };
 
-            return View(await employees.ToListAsync());
+            List<Company> companies = context.Companies.ToList();
+            companies.Insert(0, new() { Id = 0, Title = "All Company" });
+
+            EmployeesListViewModel viewModel = new EmployeesListViewModel()
+            {
+                Employees = employees.ToList(),
+                Companies = new SelectList(companies, "Id", "Title", companyId),
+                Name = name
+            };
+
+            return View(viewModel);
 
         }
 
