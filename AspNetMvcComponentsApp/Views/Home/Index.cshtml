@@ -1,0 +1,7 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-left">
+    @await Component.InvokeAsync("TxtFileRead", new { fileName = "Hello.txt" })
+</div>

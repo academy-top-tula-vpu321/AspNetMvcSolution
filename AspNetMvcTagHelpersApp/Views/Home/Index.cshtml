@@ -1,0 +1,23 @@
+﻿@model AspNetMvcTagHelpersApp.Controllers.EmployeeViewModel;
+@using AspNetMvcTagHelpersApp.Models;
+
+@{
+    
+}
+
+<div class="text-center">
+    <form asp-antiforgery="true">
+        <div>
+            <label asp-for="@Model.Employee.Name">Name</label>
+            <input type="text" asp-for="@Model.Employee.Name" value="" />
+        </div>
+        <div>
+            <label asp-for="@Model.Employee.BirthDate">Name</label>
+            <input type="date" asp-for="@Model.Employee.BirthDate" value="" />
+        </div>
+        <div>
+            <label asp-for="@Model.Employee.CompanyId">Company</label>
+            <select asp-for="@Model.Employee.CompanyId" asp-items="@Model.Companies as SelectList" />
+        </div>
+    </form>
+</div>

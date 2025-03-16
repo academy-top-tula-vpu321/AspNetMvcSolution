@@ -1,6 +1,32 @@
-﻿@{
-    ViewData["Title"] = "Privacy Policy";
-}
-<h1>@ViewData["Title"]</h1>
+﻿
+@* <form method="post" action="~/Home/Privacy"> *@
 
-<p>Use this page to detail your site's privacy policy.</p>
+@Html.ActionLink("Goto Search", "Index")
+
+
+@using (Html.BeginForm("Privacy", "Home", FormMethod.Post))
+{
+    <div>
+       
+    </div>
+    <div>
+        @* <label for="name">Name</label> *@
+        @* <input type="text" name="name" /> *@
+        @Html.Label("name", "Name")
+        @Html.TextBox("name", "", new {type = "number"})
+    </div>
+    <div>
+        <label>Birth Date</label>
+        <input type="date" name="birthDate" />
+    </div>
+    <div>
+    @Html.ListBox("countries", ViewData["countries"] as SelectList)
+    </div>
+
+    <div>
+        <input type="submit" value="Send" />
+    </div>
+}
+
+@* </form> *@
+

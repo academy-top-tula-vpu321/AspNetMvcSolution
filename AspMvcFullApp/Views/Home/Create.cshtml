@@ -1,0 +1,18 @@
+﻿@model AspMvcFullApp.Models.Employee
+
+<h2>Add new Employee</h2>
+<form asp-controller="home" asp-action="create">
+    <div>
+        <label asp-for="Name">Name</label>
+        <input asp-for="Name" type="text" />
+    </div>
+
+    <div>
+        <label asp-for="Age">Age</label>
+        <input asp-for="Age" type="number" />
+    </div>
+    <div>
+        <button type="submit">Create Employee</button>
+    </div>
+</form>
+

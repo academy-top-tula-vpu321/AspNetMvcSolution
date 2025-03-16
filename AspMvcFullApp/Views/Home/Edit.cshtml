@@ -1,0 +1,18 @@
+﻿@model AspMvcFullApp.Models.Employee
+
+<h2>Edit Employee</h2>
+<form asp-controller="home" asp-action="edit" asp-route-id="@Model.Id">
+    <div>
+        <label asp-for="Name">Name</label>
+        <input asp-for="Name" type="text" />
+    </div>
+
+    <div>
+        <label asp-for="Age">Age</label>
+        <input asp-for="Age" type="number" />
+    </div>
+    <div>
+        <button type="submit">Save Employee</button>
+    </div>
+</form>
+
