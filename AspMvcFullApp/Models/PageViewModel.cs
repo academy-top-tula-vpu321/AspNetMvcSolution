@@ -3,15 +3,15 @@
     public class PageViewModel
     {
         public int Page { get; }
-        public int Total { get; }
+        public int TotalPages { get; }
 
         public bool HasPrevPage => Page > 1;
-        public bool HasNextPage => Page < Total;
+        public bool HasNextPage => Page < TotalPages;
 
-        public PageViewModel(int page, int total)
+        public PageViewModel(int count, int page, int size)
         {
             Page = page;
-            Total = total;
+            TotalPages = (int)Math.Ceiling((count / (double)size));
         }
     }
 }

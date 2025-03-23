@@ -1,20 +1,22 @@
-﻿@* @model IEnumerable<AspMvcFullApp.Models.Employee> *@
-@model AspMvcFullApp.Models.EmployeesListViewModel
+﻿@using AspMvcFullApp.Models
+
+@model AspMvcFullApp.Models.IndexViewModel
 
 <div>
     <div>
         <a asp-action="create" class="btn btn-primary">Add new employee</a>
     </div>
 
+    <!-- Filters -->
     <div>
         <form method="get">
-            <label asp-for="Name">Name</label>
-            <input asp-for="Name" />
+            <label asp-for="@Model.filterViewModel.SelectedName">Name</label>
+            <input asp-for="@Model.filterViewModel.SelectedName" />
 
-            <label asp-for="Companies">Name</label>
-            <select name="companyId" asp-items="Model.Companies"></select>
+            <label asp-for="@Model.filterViewModel.Companies">Name</label>
+            <select name="companyId" asp-items="@Model.filterViewModel.Companies"></select>
 
-            <button type="submit">Search</button>
+            <button type="submit" class="btn btn-info">Search</button>
         </form>
     </div>
 
@@ -23,17 +25,23 @@
         <thead>
             <tr>
                 <th>
-                    <a asp-action="index" asp-route-sortState="@ViewData["NameSort"]">
+                    <a asp-action="index" asp-route-sortState="@Model.sortViewModel.NameSort"
+                                          asp-route-name="@Model.filterViewModel.SelectedName"
+                                          asp-route-company="@Model.filterViewModel.SelectedCompanyId">
                         Name
                     </a>
                 </th>
                 <th>
-                    <a asp-action="index" asp-route-sortState="@ViewData["AgeSort"]">
+                    <a asp-action="index" asp-route-sortState="@Model.sortViewModel.AgeSort"
+                                           asp-route-name="@Model.filterViewModel.SelectedName"
+                                           asp-route-company="@Model.filterViewModel.SelectedCompanyId">
                         Age
                     </a>
                 </th>
                 <th>
-                    <a asp-action="index" asp-route-sortState="@ViewData["CompanySort"]">
+                    <a asp-action="index" asp-route-sortState="@Model.sortViewModel.CompanySort"
+                                           asp-route-name="@Model.filterViewModel.SelectedName"
+                                           asp-route-company="@Model.filterViewModel.SelectedCompanyId">
                         Company
                     </a>
                 </th>
@@ -71,4 +79,27 @@
             }
         </tbody>
     </table>
+    @if(Model.pageViewModel.HasPrevPage)
+    {
+        <a class="btn btn-outline-info"
+           asp-action="index"
+           asp-route-name="@Model.filterViewModel.SelectedName"
+           asp-route-company="@Model.filterViewModel.SelectedCompanyId"
+           asp-route-sortState="@Model.sortViewModel.CurrentSort"
+           asp-route-page="@(Model.pageViewModel.Page - 1)">
+            Previous
+        </a>
+    }
+
+    @if (Model.pageViewModel.HasNextPage)
+    {
+        <a class="btn btn-outline-info"
+           asp-action="index"
+           asp-route-name="@Model.filterViewModel.SelectedName"
+           asp-route-company="@Model.filterViewModel.SelectedCompanyId"
+           asp-route-sortState="@Model.sortViewModel.CurrentSort"
+           asp-route-page="@(Model.pageViewModel.Page + 1)">
+            Next
+        </a>
+    }
 </div>

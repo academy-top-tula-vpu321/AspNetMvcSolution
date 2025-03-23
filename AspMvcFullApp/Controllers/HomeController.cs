@@ -17,13 +17,15 @@ namespace AspMvcFullApp.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Index(int? companyId, string? name, 
+        public async Task<IActionResult> Index(string? name, int companyId = 0, int page = 1, 
                                                 SortState sortState = SortState.NameAsc)
         {
+            int pageSize = 4;
+
             IQueryable<Employee> employees = context.Employees
                                    .Include(e => e.Company);
 
-            if (companyId is not null && companyId != 0)
+            if (companyId != 0)
                 employees = employees.Where(e => e.CompanyId == companyId);
 
             if(!String.IsNullOrEmpty(name))
@@ -44,15 +46,26 @@ namespace AspMvcFullApp.Controllers
                 _ => employees.OrderBy(e => e.Name)
             };
 
-            List<Company> companies = context.Companies.ToList();
-            companies.Insert(0, new() { Id = 0, Title = "All Company" });
+            //List<Company> companies = context.Companies.ToList();
+            //companies.Insert(0, new() { Id = 0, Title = "All Company" });
 
-            EmployeesListViewModel viewModel = new EmployeesListViewModel()
-            {
-                Employees = employees.ToList(),
-                Companies = new SelectList(companies, "Id", "Title", companyId),
-                Name = name
-            };
+            //EmployeesListViewModel viewModel = new EmployeesListViewModel()
+            //{
+            //    Employees = employees.ToList(),
+            //    Companies = new SelectList(companies, "Id", "Title", companyId),
+            //    Name = name
+            //};
+
+            var count = await employees.CountAsync();
+            var currentEmployees = await employees.Skip((page - 1) * pageSize).Take(pageSize).ToListAsync();
+
+            IndexViewModel viewModel = new(
+                currentEmployees,
+                new FilterViewModel(context.Companies.ToList(), companyId, name),
+                new SortViewModel(sortState),
+                new PageViewModel(count, page, pageSize)
+                );
+            
 
             return View(viewModel);
 
